@@ -14,12 +14,15 @@ const registerUser =
     try{
       dispatch({type:types.REGISTER_USER_REQUEST});
       const response = await api.post("/user",{email, name, password});
-      if(response.status !==200) throw new Error(response.error);
+      if(response.status !==200){
+        throw new Error(response.error);
+      };
       dispatch({type:types.REGISTER_USER_SUCCESS});
       dispatch(commonUiActions.showToastMessage("회원가입을 완료 했습니다!", "success"));
       navigate("/login");
     }catch(error){
       dispatch({type:types.REGISTER_USER_FAIL, payload:error.error});
+      dispatch(commonUiActions.showToastMessage(error.error, "error"));
     }
   };
 export const userActions = {
