@@ -11,10 +11,10 @@ const addToCart =
       console.log(response);
       if(response.status !== 200) throw new Error(response.error);
       dispatch({type:types.ADD_TO_CART_SUCCESS, payload:response.data.cartItemQty});
-      commonUiActions.showToastMessage("카트에 상품이 추가 되었습니다.", "success");
+      dispatch(commonUiActions.showToastMessage("카트에 상품이 추가 되었습니다.", "success"));
     }catch(error){
       dispatch({type:types.ADD_TO_CART_FAIL, payload:error.error});
-      commonUiActions.showToastMessage(error.error, "error");
+      dispatch(commonUiActions.showToastMessage(error.error, "error"));
     }
   };
 
