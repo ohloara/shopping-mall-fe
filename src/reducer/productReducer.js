@@ -19,7 +19,6 @@ function productReducer(state = initialState, action) {
     case types.PRODUCT_EDIT_SUCCESS:    
       return {...state, loading:false, error:""}
     case types.GET_PRODUCT_DETAIL_SUCCESS:
-      console.log(`Reducer payload: `, payload);
       return { ...state, loading: false, selectedProduct: payload, error: null };
     case types.PRODUCT_GET_SUCCESS:
       return{
