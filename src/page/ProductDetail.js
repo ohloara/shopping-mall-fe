@@ -12,11 +12,11 @@ import "../style/productDetail.style.css";
 const ProductDetail = () => {
   const dispatch = useDispatch();
   const selectedProduct = useSelector((state) => state.product.selectedProduct);
+  const loading = useSelector((state) => state.product.loading);
   const error = useSelector((state) => state.product.error);
   const [size, setSize] = useState("");
   const { id } = useParams();
   const [sizeError, setSizeError] = useState(false);
-
   const navigate = useNavigate();
 
   const addItemToCart = () => {
@@ -34,7 +34,27 @@ const ProductDetail = () => {
 
   useEffect(() => {
     dispatch(productActions.getProductDetail(id));
+    console.log("id", id);
   }, [id]);
+
+  useEffect(() => {
+    console.log("loading", loading);
+    console.log("selectedProduct", selectedProduct);
+    console.log("error", error ? error : "No error");
+  }, [loading, selectedProduct, error]);
+
+  if (loading || !selectedProduct)
+    return (
+      <ColorRing
+        visible={true}
+        height="80"
+        width="80"
+        ariaLabel="blocks-loading"
+        wrapperStyle={{}}
+        wrapperClass="blocks-wrapper"
+        colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
+      />
+  );
 
   return (
     <Container className="product-detail-card">

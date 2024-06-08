@@ -18,7 +18,9 @@ const getProductList = (query) => async (dispatch) => {
 const getProductDetail = (id) => async (dispatch) => {
   try {
     dispatch({ type: types.GET_PRODUCT_DETAIL_REQUEST });
+    console.log("id", id);
     const response = await api.get(`/product/${id}`);
+    console.log("response", response);
     if (response.status !== 200) throw new Error(response.error);
     dispatch({
       type: types.GET_PRODUCT_DETAIL_SUCCESS,
