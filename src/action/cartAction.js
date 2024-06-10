@@ -12,6 +12,7 @@ const addToCart =
       console.log(response);
       if(response.status !== 200) throw new Error(response.error);
       dispatch({type:types.ADD_TO_CART_SUCCESS, payload:response.data.cartItemQty});
+      dispatch(getCartQty()); //추가
       dispatch(commonUiActions.showToastMessage("카트에 상품이 추가 되었습니다.", "success"));
     }catch(error){
       dispatch({type:types.ADD_TO_CART_FAIL, payload:error.error});
@@ -32,6 +33,7 @@ const getCartList = () => async (dispatch) => {
     dispatch({type:types.GET_CART_LIST_FAIL, payload:error.error});
   }
 };
+
 const deleteCartItem = (id) => async (dispatch) => {
   try{
     dispatch({ type: types.DELETE_CART_ITEM_REQUEST });
@@ -39,6 +41,7 @@ const deleteCartItem = (id) => async (dispatch) => {
     if (response.status !== 200) throw new Error(response.error);
     dispatch({
       type: types.DELETE_CART_ITEM_SUCCESS, payload: response.data.cartItemQty});
+    dispatch(getCartQty());//추가
     dispatch(getCartList());
   }catch(error){
     dispatch({ type: types.DELETE_CART_ITEM_FAIL, payload: error });

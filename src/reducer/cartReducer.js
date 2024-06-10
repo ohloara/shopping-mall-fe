@@ -53,6 +53,7 @@ function cartReducer(state = initialState, action) {
       }
 
     case types.GET_CART_QTY_SUCCESS:
+      console.log("리듀서",payload);
       return { ...state, cartItemCount: payload };
 
     case types.ADD_TO_CART_FAIL:
