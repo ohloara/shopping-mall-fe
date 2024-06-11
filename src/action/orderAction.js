@@ -5,10 +5,10 @@ import { commonUiActions } from "./commonUiAction";
 
 const createOrder = (payload, navigate) => async (dispatch) => {
   try{
-    console.log("payload", payload);
     dispatch({type:types.CREATE_ORDER_REQUEST});
     const response = await api.post("/order",payload);
     if(response.status !== 200) throw new Error(response.error);
+    console.log(response.data.orderNum);
     dispatch({type:types.CREATE_ORDER_SUCCESS, payload:response.data.orderNum});
     dispatch(cartActions.getCartQty());
     navigate("/payment/success");
