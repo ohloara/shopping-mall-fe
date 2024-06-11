@@ -40,7 +40,7 @@ const PaymentPage = () => {
     const {firstName, lastName, contact, address, city, zip} = shipInfo;
     const data={
       totalPrice, 
-      shipInfo:{address, city, zip}, 
+      shipTo:{address, city, zip}, 
       contact:{firstName, lastName, contact},
       orderList: cartList.map(item=>{
         return{
@@ -57,7 +57,7 @@ const PaymentPage = () => {
 
   const handleFormChange = (event) => {
     //shipInfo에 값 넣어주기
-    const {name, value} = event.target.value;
+    const {name, value} = event.target;
     setShipInfo({...shipInfo, [name]:value});
   };
 

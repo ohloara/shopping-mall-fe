@@ -5,6 +5,7 @@ import { commonUiActions } from "./commonUiAction";
 
 const createOrder = (payload) => async (dispatch) => {
   try{
+    console.log("payload", payload);
     dispatch({type:types.CREATE_ORDER_REQUEST});
     const response = await api.post("/order",payload);
     if(response.status !== 200) throw new Error(response.error);
