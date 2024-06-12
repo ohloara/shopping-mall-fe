@@ -20,6 +20,7 @@ const AdminOrderPage = () => {
     ordernum: query.get("ordernum") || "",
   });
   const [open, setOpen] = useState(false);
+  const error = useSelector((state) => state.order.error);
   const totalPageNum = useSelector((state) => state.order.totalPageNum);
   const tableHeader = [
     "#",
