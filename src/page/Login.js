@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Container, Form, Button, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { GoogleLogin } from '@react-oauth/google';
 import { userActions } from "../action/userAction";
-
 import "../style/login.style.css";
 
 const Login = () => {
@@ -22,6 +22,9 @@ const Login = () => {
 
   const handleGoogleLogin = async (googleData) => {
     // 구글로 로그인 하기
+    console.log("googleData",googleData);
+    dispatch(userActions.loginWithGoogle(googleData.credential));
+
   };
 
   if (user) {
@@ -66,7 +69,14 @@ const Login = () => {
 
           <div className="text-align-center mt-2">
             <p>-외부 계정으로 로그인하기-</p>
-            <div className="display-center"></div>
+            <div className="display-center">
+              <GoogleLogin
+                onSuccess={handleGoogleLogin}
+                onError={() => {
+                  console.log('Login Failed');
+                }}
+              />
+            </div>
           </div>
         </Form>
       </Container>
