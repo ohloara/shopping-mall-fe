@@ -1,0 +1,24 @@
+.like-button{
+    background-color: transparent;
+    border: none; 
+    cursor: pointer;
+    outline: none;
+    width: 35px;
+    height: 35px;
+    display: inline;
+    font-size: 24px;
+    color: #cfcdcd;
+    margin-right: 5px;
+}
+.like-button::before {
+    content: '\2665';    
+}
+.like-button:hover{
+    color: #e50010;
+}
+.like-active{
+    color: #e50010;
+}
+.align-right{
+    text-align: right;
+}
